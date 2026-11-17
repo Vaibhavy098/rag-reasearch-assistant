@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+data/pdfs/
+data/processed/
+data/faiss_index/
+reports/*.pdf
+.pytest_cache/

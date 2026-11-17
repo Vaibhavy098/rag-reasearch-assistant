@@ -1,0 +1,414 @@
+{
+  "evaluated_at_utc": "2026-10-21T10:36:48.244434+00:00",
+  "dataset": "evaluation\\questions.json",
+  "top_k": 4,
+  "summary": {
+    "total_questions": 10,
+    "successful_evaluations": 10,
+    "failed_evaluations": 0,
+    "source_recall_average": 0.8,
+    "key_point_coverage_average": 0.6,
+    "metric_notes": [
+      "Source recall measures expected source-paper coverage.",
+      "Key-point coverage is based on lexical overlap.",
+      "Neither metric independently proves factual correctness.",
+      "A failed evaluation is excluded from averages and reported separately."
+    ]
+  },
+  "results": [
+    {
+      "id": 1,
+      "question": "Why did the authors of Attention Is All You Need propose the Transformer architecture?",
+      "reference_answer": "The authors proposed the Transformer to replace recurrent and convolutional sequence-processing components with an architecture based entirely on attention. This allows greater parallelization during training and makes it easier to model relationships between tokens over long distances.",
+      "generated_answer": "The authors of the paper \"Attention Is All You Need\" proposed the Transformer architecture due to its effectiveness in machine translation. The Transformer was initially shown to be effective for this task, and since then, it has been used in a wide variety of NLP settings (Radford et al., 2018; Devlin et al., 2018; McCann et al., 2018; Yu et al., 2018). The Transformer architecture is based on the self-attention mechanism, which was proposed by Ashish, Illia, and Noam. This mechanism allows the Transformer to process a sequence by replacing each element by a weighted average of the rest of the sequence. \n\nThe Transformer's architecture consists of stacked self-attention and point-wise, fully connected layers for both the encoder and decoder. Each layer has two sub-layers: the first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. The Transformer is a transduction model that relies entirely on self-attention to compute representations of its input and output without using sequence-aligned RNNs or convolution. \n\nTherefore, the authors of \"Attention Is All You Need\" proposed the Transformer architecture to leverage its self-attention mechanism for improved performance in various NLP tasks. [attention_is_all_you_need.pdf, p. 2]",
+      "expected_sources": [
+        "attention_is_all_you_need.pdf"
+      ],
+      "retrieved_sources": [
+        "attention_is_all_you_need.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.6667,
+        "covered_count": 2,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Replaces recurrence and convolution in the core sequence architecture",
+            "overlap": 0.5,
+            "covered": true
+          },
+          {
+            "key_point": "Uses attention mechanisms",
+            "overlap": 1.0,
+            "covered": true
+          },
+          {
+            "key_point": "Allows greater parallelization during training",
+            "overlap": 0.2,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 2,
+      "question": "What are the encoder and decoder responsible for in the original Transformer?",
+      "reference_answer": "The encoder transforms the input sequence into contextual representations. The decoder generates the output sequence, using attention over the encoder representations and over previously generated output tokens. The original Transformer uses stacks of encoder and decoder layers.",
+      "generated_answer": "In the original Transformer architecture, the encoder and decoder are responsible for different tasks, as described in the provided excerpts.\n\nThe **encoder** is responsible for processing the input sequence and passing it through a series of self-attention layers. Each position in the encoder can attend to all positions in the previous layer of the encoder. This allows the encoder to capture the context and dependencies within the input sequence. The encoder also contains multi-head attention layers where queries come from the previous decoder layer and the memory keys and values come from the output of the encoder. This mechanism enables the decoder to attend over all positions in the input sequence.\n\nThe **decoder**, on the other hand, is responsible for autoregressively producing an output sequence. Each position in the decoder can attend to all positions in the decoder up to and including that position. The decoder uses a form of autoregressive or causal self-attention, which only allows the model to attend to past outputs. The output of the final decoder block is fed into a dense layer with a softmax output, whose weights are shared with the input embedding matrix. The self-attention operations in the decoder use a \"causal\" masking pattern, preventing the model from attending to future positions in the input sequence.\n\nThese mechanisms are designed to ensure that the model can only see past inputs when generating the next token in the output sequence, maintaining the autoregressive property.",
+      "expected_sources": [
+        "attention_is_all_you_need.pdf"
+      ],
+      "retrieved_sources": [
+        "attention_is_all_you_need.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.6667,
+        "covered_count": 2,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Encoder produces contextual input representations",
+            "overlap": 0.4,
+            "covered": false
+          },
+          {
+            "key_point": "Decoder generates output tokens",
+            "overlap": 0.75,
+            "covered": true
+          },
+          {
+            "key_point": "Decoder attends to encoder outputs and previous output tokens",
+            "overlap": 1.0,
+            "covered": true
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 3,
+      "question": "What is self-attention, and why is it useful in the Transformer?",
+      "reference_answer": "Self-attention lets each token calculate how much to attend to other tokens in the same sequence when constructing its representation. It helps the model capture relationships between tokens without processing the sequence recurrently.",
+      "generated_answer": "Self-attention is a mechanism used in the Transformer architecture, which is a variant of attention that processes a sequence by replacing each element by a weighted average of the rest of the sequence. It is a primary building block of the Transformer, as stated in the research excerpts [t5.pdf, p. 4].\n\nSelf-attention is useful in the Transformer because it allows every position in the decoder to attend over all positions in the input sequence. This is particularly useful in sequence-to-sequence models such as machine translation, where the decoder needs to generate the next output symbol based on the previous output symbol and the input sequence. By using self-attention, the Transformer can maintain the autoregressive property, meaning that each position in the decoder only considers the previous positions in the decoder sequence.\n\nIn summary, self-attention is a mechanism that enables the Transformer to process sequences in a way that each element is influenced by all other elements, which is beneficial for tasks like machine translation where the model needs to generate output sequences based on input sequences.",
+      "expected_sources": [
+        "attention_is_all_you_need.pdf"
+      ],
+      "retrieved_sources": [
+        "attention_is_all_you_need.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.3333,
+        "covered_count": 1,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Tokens attend to other tokens in the same sequence",
+            "overlap": 0.6,
+            "covered": true
+          },
+          {
+            "key_point": "Attention weights influence token representations",
+            "overlap": 0.4,
+            "covered": false
+          },
+          {
+            "key_point": "Can model relationships without recurrence",
+            "overlap": 0.0,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 4,
+      "question": "How does BERT use masked language modeling during pretraining?",
+      "reference_answer": "BERT masks selected input tokens and trains the model to predict the original tokens using their surrounding context. This objective helps BERT learn bidirectional contextual representations rather than relying only on a left-to-right or right-to-left context.",
+      "generated_answer": "BERT uses masked language modeling (MLM) during pretraining. During this process, a random sample of tokens in the input sequence is replaced with the special token [MASK]. The MLM objective is a cross-entropy loss, which is used to train the model. \n\nIn the pretraining procedure, BERT is trained for S = 1,000,000 updates, with mini-BERT using a transformer architecture (Vaswani et al., 2017). Each block in the transformer architecture uses A self-attention heads and hidden dimension H. BERT is trained on a combination of BOOKCORPUS (Zhu et al., 2015) plus English WIKIPEDIA, totaling 16GB of uncompressed text.\n\nDuring pretraining, BERT employs two objectives: masked language modeling and next sentence prediction (NSP). The MLM objective is achieved by randomly masking a portion of the tokens in the input sequence and predicting the masked tokens. \n\nThe MLM objective is a cross-entropy loss, which is used to train the model. The NSP loss is used to predict whether the observed document segments come from the same or distinct documents. This loss was hypothesized to be an important factor in training the original BERT model. \n\nIn summary, BERT uses masked language modeling during pretraining to predict the masked tokens and to predict whether the observed document segments come from the same or distinct documents.",
+      "expected_sources": [
+        "bert.pdf"
+      ],
+      "retrieved_sources": [
+        "bert.pdf",
+        "roberta.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.6667,
+        "covered_count": 2,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Selected input tokens are masked or otherwise corrupted for the objective",
+            "overlap": 0.5714,
+            "covered": true
+          },
+          {
+            "key_point": "The model predicts original token identities",
+            "overlap": 0.75,
+            "covered": true
+          },
+          {
+            "key_point": "Uses context from both directions",
+            "overlap": 0.0,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 5,
+      "question": "What is the Next Sentence Prediction objective in the original BERT paper?",
+      "reference_answer": "Next Sentence Prediction, or NSP, trains BERT to determine whether a second text segment follows the first segment in the original document. The original paper combines NSP with masked language modeling during pretraining to help learn relationships between sentence pairs.",
+      "generated_answer": "The Next Sentence Prediction objective in the original BERT paper is to predict whether the observed document segments come from the same or distinct documents via an auxiliary Next Sentence Prediction (NSP) objective. This objective was originally proposed as a pre-training technique for an encoder-only model trained for classification and span prediction. In the original BERT pretraining procedure, the model observes two concatenated document segments, which are either sampled contiguously from the same document (with p = 0.5) or from distinct documents. The model is trained to predict whether the observed document segments come from the same or distinct documents. [bert.pdf, p. 4]",
+      "expected_sources": [
+        "bert.pdf"
+      ],
+      "retrieved_sources": [
+        "roberta.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 0.0,
+      "key_point_coverage": {
+        "score": 0.6667,
+        "covered_count": 2,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Predicts whether a second segment follows the first",
+            "overlap": 0.5,
+            "covered": true
+          },
+          {
+            "key_point": "Uses sentence or text-segment pairs",
+            "overlap": 0.5,
+            "covered": true
+          },
+          {
+            "key_point": "Combined with masked language modeling in the original BERT setup",
+            "overlap": 0.2857,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 6,
+      "question": "What does few-shot learning mean in the GPT-3 paper, and how does GPT-3 perform it?",
+      "reference_answer": "Few-shot learning means providing a language model with a small number of task demonstrations in the prompt rather than updating its model parameters for each task. GPT-3 uses in-context examples and generates a response conditioned on the prompt.",
+      "generated_answer": "Few-shot learning in the context of the GPT-3 paper refers to the ability of the model to perform tasks with very few examples or demonstrations. The paper discusses GPT-3's performance in zero-shot, one-shot, and few-shot settings. In these settings, GPT-3 demonstrates promising results, sometimes even surpassing state-of-the-art models, especially in the few-shot setting.\n\nFor example, GPT-3 achieves 81.5 F1 on CoQA in the zero-shot setting, 84.0 F1 in the one-shot setting, and 85.0 F1 in the few-shot setting. Similarly, it achieves 64.3% accuracy on TriviaQA in the zero-shot setting, 68.0% in the one-shot setting, and 71.2% in the few-shot setting, which is state-of-the-art relative to fine-tuned models operating in the same closed-book setting.\n\nGPT-3 also shows proficiency in tasks that test rapid adaptation or on-the-fly reasoning, indicating its ability to learn from a small amount of data. However, the paper also notes that GPT-3 still sees much more text during pre-training than a human would in their lifetime, suggesting room for improvement in pre-training sample efficiency.\n\nThe paper does not provide detailed explanations of how GPT-3 performs few-shot learning, but it mentions that GPT-3 achieves competitive or superior results in few-shot settings compared to fine-tuned models, which is a key aspect of few-shot learning.",
+      "expected_sources": [
+        "gpt3_few_shot_learners.pdf"
+      ],
+      "retrieved_sources": [
+        "gpt3_few_shot_learners.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.3333,
+        "covered_count": 1,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Uses a small number of task examples in the prompt",
+            "overlap": 0.6,
+            "covered": true
+          },
+          {
+            "key_point": "Does not require gradient updates for each prompted task",
+            "overlap": 0.375,
+            "covered": false
+          },
+          {
+            "key_point": "Generates output conditioned on the provided context",
+            "overlap": 0.2,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 7,
+      "question": "What changes did RoBERTa make to the BERT pretraining approach?",
+      "reference_answer": "RoBERTa showed that BERT's pretraining could be substantially improved through better training choices. Its approach included training on more data, using larger batches and longer training, removing the Next Sentence Prediction objective, and using dynamic masking. The paper also examined other training and data choices.",
+      "generated_answer": "RoBERTa made several changes to the BERT pretraining approach. Here are some of the key modifications:\n\n1. **Text Encoding Improvements**: RoBERTa uses Byte-Pair Encoding (BPE) for text encoding. Unlike BERT, which relies on full words, RoBERTa employs subwords units extracted by BPE. This allows handling the large vocabularies common in natural language corpora more effectively.\n\n2. **Training Data and Batch Size**: RoBERTa trains with larger batch sizes, up to 32K sequences, compared to BERT which uses batches of 8K sequences. This larger batch size helps in seeing four times as many sequences in pretraining, potentially aiding in learning a larger subword vocabulary.\n\n3. **Training Duration**: RoBERTa trains for 100K steps over a comparable BOOK-functionality, which is longer than BERT's training duration. This extended training period is intended to improve the model's end-task performance.\n\n4. **Dynamic Masking**: RoBERTa uses dynamic masking in its pretraining procedure. This is in contrast to BERT, which uses a fixed mask pattern. Dynamic masking allows for more flexible and potentially more effective training.\n\nIn summary, RoBERTa improves upon BERT by refining its text encoding, increasing the batch size, extending the training duration, and employing dynamic masking. These changes aim to enhance the model's pretraining effectiveness and, consequently, its performance on downstream tasks. [roberta.pdf, p. 6]",
+      "expected_sources": [
+        "roberta.pdf"
+      ],
+      "retrieved_sources": [
+        "roberta.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.75,
+        "covered_count": 3,
+        "total_key_points": 4,
+        "details": [
+          {
+            "key_point": "More training data and longer training",
+            "overlap": 1.0,
+            "covered": true
+          },
+          {
+            "key_point": "Larger batches",
+            "overlap": 1.0,
+            "covered": true
+          },
+          {
+            "key_point": "Removed Next Sentence Prediction",
+            "overlap": 0.0,
+            "covered": false
+          },
+          {
+            "key_point": "Dynamic masking",
+            "overlap": 1.0,
+            "covered": true
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 8,
+      "question": "What does it mean that T5 treats NLP tasks as text-to-text problems?",
+      "reference_answer": "T5 represents both the input and output of many NLP tasks as text. Task-specific prefixes can indicate what the model should do, and the model produces a text output. This creates a unified framework for tasks such as translation, summarization, and question answering.",
+      "generated_answer": "T5 treats NLP tasks as text-to-text problems by casting all NLP tasks into a unified framework where each task is seen as a text input fed into the model, which then generates a target text output. This approach allows T5 to use the same model, loss function, hyperparameters, and training procedure across various NLP tasks, such as translation, question answering, and classification. The model is designed to process text inputs and generate corresponding target texts, as illustrated in Figure 1 from the T5 paper. This text-to-text framework enables T5 to directly apply the same model and training process to a wide variety of NLP problems, including question answering, summarization, and sentiment analysis. [t5.pdf, p. 3]",
+      "expected_sources": [
+        "t5.pdf"
+      ],
+      "retrieved_sources": [
+        "bert.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 1.0,
+      "key_point_coverage": {
+        "score": 0.6667,
+        "covered_count": 2,
+        "total_key_points": 3,
+        "details": [
+          {
+            "key_point": "Inputs and outputs are represented as text",
+            "overlap": 0.75,
+            "covered": true
+          },
+          {
+            "key_point": "Task prefixes can specify the task",
+            "overlap": 0.3333,
+            "covered": false
+          },
+          {
+            "key_point": "One framework supports multiple NLP tasks",
+            "overlap": 0.5,
+            "covered": true
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 9,
+      "question": "How does the original Transformer differ from BERT in architecture and typical use?",
+      "reference_answer": "The original Transformer is an encoder-decoder architecture designed and evaluated for sequence-to-sequence tasks such as machine translation. BERT uses only the Transformer encoder stack and is pretrained to produce bidirectional contextual representations, which can then be fine-tuned for language-understanding tasks.",
+      "generated_answer": "The original Transformer, as used in BERT, differs from the Transformer used in OpenAI GPT in their architecture. BERT employs a bidirectional Transformer, meaning it considers both the left and right context in all layers. In contrast, OpenAI GPT uses a left-to-right Transformer, which only considers the left context. This difference is illustrated in Figure 3 from the BERT paper (p. 13).\n\nBERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context. It is a fine-tuning approach, where the pre-trained representations are used as additional features for downstream tasks. BERT is characterized by its bidirectional self-attention mechanism, which means that every token can attend to context from both left and right. This is in contrast to the Transformer used in OpenAI GPT, which employs constrained self-attention, where each token can only attend to context to its left.\n\nIn summary, BERT and OpenAI GPT differ in their architecture, with BERT using a bidirectional Transformer and OpenAI GPT using a left-to-right Transformer. BERT is designed for pre-training on unlabeled text by considering both left and right contexts, while OpenAI GPT focuses on a left-to-right context.",
+      "expected_sources": [
+        "attention_is_all_you_need.pdf",
+        "bert.pdf"
+      ],
+      "retrieved_sources": [
+        "bert.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 0.5,
+      "key_point_coverage": {
+        "score": 0.5,
+        "covered_count": 2,
+        "total_key_points": 4,
+        "details": [
+          {
+            "key_point": "Original Transformer has encoder and decoder stacks",
+            "overlap": 0.4,
+            "covered": false
+          },
+          {
+            "key_point": "BERT uses the encoder stack",
+            "overlap": 0.3333,
+            "covered": false
+          },
+          {
+            "key_point": "BERT learns bidirectional contextual representations",
+            "overlap": 0.6,
+            "covered": true
+          },
+          {
+            "key_point": "Their original designs emphasize different task settings",
+            "overlap": 0.5,
+            "covered": true
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "id": 10,
+      "question": "What is one important difference between GPT-3's few-shot approach and T5's text-to-text framework?",
+      "reference_answer": "GPT-3 emphasizes adapting to tasks through examples or instructions provided in the prompt, without updating model parameters for each task. T5 emphasizes representing diverse NLP tasks in a unified text-input-to-text-output format, using task prefixes where appropriate. These describe different aspects of the approaches and are not mutually exclusive concepts.",
+      "generated_answer": "One important difference between GPT-3's few-shot approach and T5's text-to-text framework lies in their performance on tasks that involve comparing two sentences or snippets, such as the Word In Context (WiC) task. GPT-3, in the few-shot setting, achieves a performance of 49.4%, which is at random chance, indicating that it is weak in these tasks. In contrast, GPT-3's performance in the few-shot setting improves significantly, achieving 86.4% accuracy in a fill-in-the-blank format, which is a notable improvement from the previous state-of-the-art performance of 49.4%.\n\nThis difference is highlighted in Excerpt 1 from [gpt3_few_shot_learners.pdf, p. 12], where it is mentioned that GPT-3 achieves 86.4% accuracy in the few-shot setting, an increase of over 18% from the previous state-of-the-art. This suggests that GPT-3's performance in few-shot settings can be improved through specific training methods, such as the fill-in-the-blank format, which is not necessarily the case for T5, as T5 is a text-to-text framework that does not necessarily require such specific training methods.",
+      "expected_sources": [
+        "gpt3_few_shot_learners.pdf",
+        "t5.pdf"
+      ],
+      "retrieved_sources": [
+        "gpt3_few_shot_learners.pdf"
+      ],
+      "retrieved_chunk_count": 4,
+      "source_recall": 0.5,
+      "key_point_coverage": {
+        "score": 0.75,
+        "covered_count": 3,
+        "total_key_points": 4,
+        "details": [
+          {
+            "key_point": "GPT-3 emphasizes in-context task demonstrations",
+            "overlap": 0.6,
+            "covered": true
+          },
+          {
+            "key_point": "GPT-3 does not update parameters for each few-shot prompt",
+            "overlap": 0.5556,
+            "covered": true
+          },
+          {
+            "key_point": "T5 uses a unified text-to-text task format",
+            "overlap": 0.8,
+            "covered": true
+          },
+          {
+            "key_point": "The two ideas are not mutually exclusive",
+            "overlap": 0.4,
+            "covered": false
+          }
+        ]
+      },
+      "error": null
+    }
+  ]
+}

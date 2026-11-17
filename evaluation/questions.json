@@ -1,0 +1,115 @@
+[
+  {
+    "id": 1,
+    "question": "Why did the authors of Attention Is All You Need propose the Transformer architecture?",
+    "reference_answer": "The authors proposed the Transformer to replace recurrent and convolutional sequence-processing components with an architecture based entirely on attention. This allows greater parallelization during training and makes it easier to model relationships between tokens over long distances.",
+    "source_papers": ["attention_is_all_you_need.pdf"],
+    "key_points": [
+      "Replaces recurrence and convolution in the core sequence architecture",
+      "Uses attention mechanisms",
+      "Allows greater parallelization during training"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What are the encoder and decoder responsible for in the original Transformer?",
+    "reference_answer": "The encoder transforms the input sequence into contextual representations. The decoder generates the output sequence, using attention over the encoder representations and over previously generated output tokens. The original Transformer uses stacks of encoder and decoder layers.",
+    "source_papers": ["attention_is_all_you_need.pdf"],
+    "key_points": [
+      "Encoder produces contextual input representations",
+      "Decoder generates output tokens",
+      "Decoder attends to encoder outputs and previous output tokens"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What is self-attention, and why is it useful in the Transformer?",
+    "reference_answer": "Self-attention lets each token calculate how much to attend to other tokens in the same sequence when constructing its representation. It helps the model capture relationships between tokens without processing the sequence recurrently.",
+    "source_papers": ["attention_is_all_you_need.pdf"],
+    "key_points": [
+      "Tokens attend to other tokens in the same sequence",
+      "Attention weights influence token representations",
+      "Can model relationships without recurrence"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "How does BERT use masked language modeling during pretraining?",
+    "reference_answer": "BERT masks selected input tokens and trains the model to predict the original tokens using their surrounding context. This objective helps BERT learn bidirectional contextual representations rather than relying only on a left-to-right or right-to-left context.",
+    "source_papers": ["bert.pdf"],
+    "key_points": [
+      "Selected input tokens are masked or otherwise corrupted for the objective",
+      "The model predicts original token identities",
+      "Uses context from both directions"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What is the Next Sentence Prediction objective in the original BERT paper?",
+    "reference_answer": "Next Sentence Prediction, or NSP, trains BERT to determine whether a second text segment follows the first segment in the original document. The original paper combines NSP with masked language modeling during pretraining to help learn relationships between sentence pairs.",
+    "source_papers": ["bert.pdf"],
+    "key_points": [
+      "Predicts whether a second segment follows the first",
+      "Uses sentence or text-segment pairs",
+      "Combined with masked language modeling in the original BERT setup"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What does few-shot learning mean in the GPT-3 paper, and how does GPT-3 perform it?",
+    "reference_answer": "Few-shot learning means providing a language model with a small number of task demonstrations in the prompt rather than updating its model parameters for each task. GPT-3 uses in-context examples and generates a response conditioned on the prompt.",
+    "source_papers": ["gpt3_few_shot_learners.pdf"],
+    "key_points": [
+      "Uses a small number of task examples in the prompt",
+      "Does not require gradient updates for each prompted task",
+      "Generates output conditioned on the provided context"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "What changes did RoBERTa make to the BERT pretraining approach?",
+    "reference_answer": "RoBERTa showed that BERT's pretraining could be substantially improved through better training choices. Its approach included training on more data, using larger batches and longer training, removing the Next Sentence Prediction objective, and using dynamic masking. The paper also examined other training and data choices.",
+    "source_papers": ["roberta.pdf"],
+    "key_points": [
+      "More training data and longer training",
+      "Larger batches",
+      "Removed Next Sentence Prediction",
+      "Dynamic masking"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What does it mean that T5 treats NLP tasks as text-to-text problems?",
+    "reference_answer": "T5 represents both the input and output of many NLP tasks as text. Task-specific prefixes can indicate what the model should do, and the model produces a text output. This creates a unified framework for tasks such as translation, summarization, and question answering.",
+    "source_papers": ["t5.pdf"],
+    "key_points": [
+      "Inputs and outputs are represented as text",
+      "Task prefixes can specify the task",
+      "One framework supports multiple NLP tasks"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "How does the original Transformer differ from BERT in architecture and typical use?",
+    "reference_answer": "The original Transformer is an encoder-decoder architecture designed and evaluated for sequence-to-sequence tasks such as machine translation. BERT uses only the Transformer encoder stack and is pretrained to produce bidirectional contextual representations, which can then be fine-tuned for language-understanding tasks.",
+    "source_papers": ["attention_is_all_you_need.pdf", "bert.pdf"],
+    "key_points": [
+      "Original Transformer has encoder and decoder stacks",
+      "BERT uses the encoder stack",
+      "BERT learns bidirectional contextual representations",
+      "Their original designs emphasize different task settings"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "What is one important difference between GPT-3's few-shot approach and T5's text-to-text framework?",
+    "reference_answer": "GPT-3 emphasizes adapting to tasks through examples or instructions provided in the prompt, without updating model parameters for each task. T5 emphasizes representing diverse NLP tasks in a unified text-input-to-text-output format, using task prefixes where appropriate. These describe different aspects of the approaches and are not mutually exclusive concepts.",
+    "source_papers": ["gpt3_few_shot_learners.pdf", "t5.pdf"],
+    "key_points": [
+      "GPT-3 emphasizes in-context task demonstrations",
+      "GPT-3 does not update parameters for each few-shot prompt",
+      "T5 uses a unified text-to-text task format",
+      "The two ideas are not mutually exclusive"
+    ]
+  }
+]
